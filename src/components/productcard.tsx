@@ -1,8 +1,8 @@
-import type { Product } from "../data/products";
+import { useState, useRef } from "react";
 import { useCart } from "../context/cartcontext";
 import toast from "react-hot-toast";
 import { cartIconRef } from "../App";
-import { useRef } from "react";
+import type { Product } from "../data/products";
 
 type Props = {
   product: Product;
@@ -10,17 +10,19 @@ type Props = {
 
 export default function ProductCard({ product }: Props) {
   const { dispatch } = useCart();
+  const [quantity, setQuantity] = useState(1);
   const imgRef = useRef<HTMLImageElement>(null);
 
-  function handleAdd() {
-    dispatch({ type: "ADD_ITEM", payload: product });
-    toast.success(`${product.name} ถูกเพิ่มลงตะกร้าแล้ว!`);
+  const handleAdd = () => {
+    if (quantity <= 0) return;
 
-    // 🎞️ Fly-to-cart animation
+    dispatch({ type: "ADD_ITEM", payload: product, quantity });
+    toast.success(`${product.name} จำนวน ${quantity} ชิ้นถูกเพิ่มลงตะกร้าแล้ว!`);
+
+    // 🧠 Animation
     if (imgRef.current && cartIconRef.current) {
       const img = imgRef.current;
       const cart = cartIconRef.current;
-
       const imgRect = img.getBoundingClientRect();
       const cartRect = cart.getBoundingClientRect();
 
@@ -46,24 +48,34 @@ export default function ProductCard({ product }: Props) {
         document.body.removeChild(clone);
       }, 800);
     }
-  }
+  };
 
   return (
     <div className="border rounded-xl shadow p-4 transition hover:shadow-lg hover:opacity-95">
       <img
-        ref={imgRef}
         src={product.image}
         alt={product.name}
+        ref={imgRef}
         className="w-full h-40 object-cover rounded"
       />
       <h2 className="text-lg font-semibold mt-2">{product.name}</h2>
       <p className="text-gray-500">฿{product.price.toLocaleString()}</p>
-      <button
-        className="mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 active:scale-95 transition"
-        onClick={handleAdd} // ✅ ใช้ handleAdd แทน
-      >
-        เพิ่มลงตะกร้า
-      </button>
+
+      <div className="mt-2 flex items-center space-x-2">
+        <input
+          type="number"
+          min={1}
+          value={quantity}
+          onChange={(e) => setQuantity(Number(e.target.value))}
+          className="w-16 px-2 py-1  bg-white border rounded"
+        />
+        <button
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 active:scale-95 transition"
+          onClick={handleAdd}
+        >
+          เพิ่มลงตะกร้า
+        </button>
+      </div>
     </div>
   );
 }

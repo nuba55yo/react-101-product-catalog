@@ -12,8 +12,8 @@ type CartState = {
 
 // 3. Action ที่รองรับ
 type Action =
-  | { type: "ADD_ITEM"; payload: Product }
-  | { type: "REMOVE_ITEM"; payload: number } // productId
+  | { type: "ADD_ITEM"; payload: Product; quantity: number }
+  | { type: "REMOVE_ITEM"; payload: number }
   | { type: "INCREASE_QUANTITY"; payload: number }
   | { type: "DECREASE_QUANTITY"; payload: number };
 // 4. Context structure
@@ -33,12 +33,14 @@ const cartReducer = (state: CartState, action: Action): CartState => {
     if (exists) {
       return {
         items: state.items.map((i) =>
-          i.id === action.payload.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.id === action.payload.id
+            ? { ...i, quantity: i.quantity + action.quantity }
+            : i
         ),
       };
     }
     return {
-      items: [...state.items, { ...action.payload, quantity: 1 }],
+      items: [...state.items, { ...action.payload, quantity: action.quantity }],
     };
   }
 

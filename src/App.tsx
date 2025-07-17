@@ -13,6 +13,17 @@ export default function App() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const totalItems = state.items.reduce((sum, item) => sum + item.quantity, 0);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10); // scroll เกิน 10px ถือว่าเริ่ม scroll
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
   // ✅ คลิกข้างนอก dropdown จะปิด
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -32,7 +43,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <nav className="bg-white shadow px-6 py-4 flex justify-between items-center relative">
+      <nav
+  className={`sticky top-0 z-50 transition-all px-6 py-4 flex justify-between items-center ${
+    isScrolled
+      ? "bg-white shadow-md"
+      : "bg-white bg-opacity-95"
+  }`}
+>
         <h1 className="text-xl font-bold">🛍️ MyCatalog</h1>
         <div className="space-x-4 relative">
           <Link to="/catalog" className="text-blue-600 hover:underline">
