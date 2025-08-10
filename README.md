@@ -2,7 +2,7 @@
 
 A simple and modern product catalog built with **React**, **TypeScript**, and **Tailwind CSS**.
 
-![Screenshot](./screenshot.png)
+![Screenshot](src/assets/catalogpactice.PNG)
 
 ## ✨ Features
 
