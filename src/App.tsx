@@ -52,9 +52,9 @@ export default function App() {
 >
         <h1 className="text-xl font-bold">🛍️ MyCatalog</h1>
         <div className="space-x-4 relative">
-          <Link to="/catalog" className="text-blue-600 hover:underline">
+          {/*<Link to="/catalog" className="text-blue-600 hover:underline">
             สินค้า
-          </Link>
+          </Link> */}
 
           {/* ✅ ใส่ ref ที่ปุ่มตะกร้า */}
           <button

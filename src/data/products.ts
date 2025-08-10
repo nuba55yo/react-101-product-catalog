@@ -28,14 +28,14 @@ export const products: Product[] = [
     name: "iPad Air",
     price: 23900,
     image:
-      "https://tse1.mm.bing.net/th/id/OIP.bv0GP-uXN0tXVELzBwpIMAAAAA?w=300&h=300&c=7",
+      "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-air-model-unselect-gallery-1-202405_FMT_WHH?wid=1280&hei=720&fmt=p-jpg&qlt=80&.v=azZtTlRzREZ3NzhWaHRDQW5YeUV0UEs0TkxxOFYxN2dtSHJMdW5sNDFVOEtiMHY1dmF4VytTZDhOL2dEbXE1ZFBTRzhFbXhrSlpyaVYxRTU4VUZ2NXlaSE1Qa0haZTFvMWVJTkxjaWwxSnhzU2tBRmNTUk5NcFVzTHFXWkV1NXNCbUhBVEg3d3ovajZBUmEvZU1rb1NR&traceId=1",
     category: "Tablet",
   },
   {
     id: 4,
     name: "Apple Watch Series 9",
     price: 15900,
-    image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/watch-s9-alum-pink-sport-loop?wid=600&hei=600&fmt=jpeg&qlt=90&.v=1693184309037",
+    image: "https://media.studio7thailand.com/153509/Apple_Watch_Series_9_GPS_45mm_Midnight_Aluminum_Midnight_Sport_Band_1.png",
     category: "Watch",
   },
   {
@@ -49,7 +49,7 @@ export const products: Product[] = [
     id: 6,
     name: "Apple Vision Pro",
     price: 124900,
-    image: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/vision-pro-hero-230606?wid=600&hei=600&fmt=jpeg&qlt=90&.v=1685740993181",
+    image: "https://dl.lnwfile.com/heol90.webp",
     category: "AR",
   },
 ];
